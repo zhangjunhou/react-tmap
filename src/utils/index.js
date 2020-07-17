@@ -3,6 +3,20 @@ const getAddressByPosition = ({ lat, lng }) => {
   return getAddressByLatLng(pointToLatLng({ lat, lng }))
 }
 
+const getPositionByAddress = ({ address }) => {
+  return getLatLngByAddress(address)
+}
+
+const getLatLngByAddress = address => {
+  return new Promise(resolve => {
+    const geocoder = new qq.maps.Geocoder({
+      complete: result => resolve(result)
+    })
+
+    geocoder.getLocation(address)
+  })
+}
+
 const getAddressByLatLng = latLng => {
   return new Promise(resolve => {
     const geocoder = new qq.maps.Geocoder({
@@ -150,6 +164,7 @@ const fomatFloat = (value, n, flag = false) => {
 }
 
 export {
+  getPositionByAddress,
   getAddressByLatLng,
   convertorPointsToPath,
   getAddressByPosition,
