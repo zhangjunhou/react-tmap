@@ -1,5 +1,5 @@
 /* global qq */
-import { getMapSize } from '../../utils'
+import { getMapSize } from '../utils'
 
 function CanvasLayer (map, options) {
   this.setMap(map)
