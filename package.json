@@ -2,7 +2,7 @@
   "name": "react-tmap",
   "version": "1.0.1",
   "description": "腾讯地图 React 实现",
-  "main": "dist/qmap.min.js",
+  "main": "dist/react-tmap.min.js",
   "scripts": {
     "build": "webpack --mode production",
     "watch": "webpack --mode development -w",
