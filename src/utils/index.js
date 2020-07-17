@@ -8,9 +8,10 @@ const getPositionByAddress = ({ address }) => {
 }
 
 const getLatLngByAddress = address => {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const geocoder = new qq.maps.Geocoder({
-      complete: result => resolve(result)
+      complete: result => resolve(result),
+      error: result => reject(result)
     })
 
     geocoder.getLocation(address)
@@ -20,7 +21,8 @@ const getLatLngByAddress = address => {
 const getAddressByLatLng = latLng => {
   return new Promise(resolve => {
     const geocoder = new qq.maps.Geocoder({
-      complete: result => resolve(result)
+      complete: result => resolve(result),
+      error: result => reject(result)
     })
 
     geocoder.getAddress(latLng)
@@ -105,7 +107,7 @@ const getCrossingPolygonal = (list) => {
 }
 
 // getPolygonAreaCenter 计算多边形质心
-function Area (p0, p1, p2) {
+function Area(p0, p1, p2) {
   let area = 0.0
   area = p0.x * p1.y + p1.x * p2.y + p2.x * p0.y - p1.x * p0.y - p2.x * p1.y - p0.x * p2.y
   return area / 2

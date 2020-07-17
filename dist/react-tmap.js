@@ -5637,10 +5637,13 @@ var getPositionByAddress = function getPositionByAddress(_ref2) {
 };
 
 var getLatLngByAddress = function getLatLngByAddress(address) {
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
     var geocoder = new qq.maps.Geocoder({
       complete: function complete(result) {
         return resolve(result);
+      },
+      error: function error(result) {
+        return reject(result);
       }
     });
     geocoder.getLocation(address);
@@ -5652,6 +5655,9 @@ var getAddressByLatLng = function getAddressByLatLng(latLng) {
     var geocoder = new qq.maps.Geocoder({
       complete: function complete(result) {
         return resolve(result);
+      },
+      error: function error(result) {
+        return reject(result);
       }
     });
     geocoder.getAddress(latLng);
